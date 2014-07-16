@@ -1,17 +1,19 @@
-package gw.contest.android.contest;
+package gw.contest.android.contest
 
 import android.content.ContentProvider
-import android.content.ContentProviderOperation;
-import android.content.ContentValues;
-import android.content.UriMatcher;
+import android.content.ContentProviderOperation
+import android.content.ContentValues
+import android.content.UriMatcher
 import android.database.Cursor
-import android.database.MatrixCursor;
+import android.database.MatrixCursor
 import android.net.Uri
 import android.widget.SimpleCursorAdapter
 import groovy.json.JsonSlurper
+import groovy.transform.CompileStatic
 import gw.contest.android.R
 
-public class ContestProvider extends ContentProvider {
+@CompileStatic
+class ContestProvider extends ContentProvider {
 
     static final UriMatcher CONTEST_URI_MATCHER
     static final String CONTEST_PROVIDER_NAME = 'gw.contest.android.provider'
