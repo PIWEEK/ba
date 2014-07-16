@@ -2,12 +2,10 @@ package gw.contest.android
 
 import android.app.ListActivity
 import android.database.Cursor
-import android.database.MatrixCursor
+import android.net.Uri
 import android.os.Bundle
-import android.app.Activity
 import android.view.Menu
-import android.widget.ArrayAdapter
-import android.widget.ListView
+import android.widget.CursorAdapter
 import android.widget.SimpleCursorAdapter
 import groovy.transform.CompileStatic
 
@@ -19,29 +17,23 @@ class ContestsListActivity extends ListActivity {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.contest_list)
 
-        String[] googleIO = [1,"Google IO Watch","Se sortea un Google Watch powered by Android"]
-        String[] fosdem = [2, "Fosdem tickets", "Se sortean dos tickets gratis para FOSDEM 2015"]
         String[] columns = ['_id','name', 'description']
-
         int[] fields = [R.id.contestId,R.id.contestName, R.id.contestDescription] as int[]
 
-        MatrixCursor cursor = new MatrixCursor(columns)
-        cursor.addRow(googleIO)
-        cursor.addRow(fosdem)
-        startManagingCursor(cursor)
+        Uri uri = Uri.parse('content://'+ContestProvider.CONTEST_PROVIDER_NAME+'/contests')
+        Cursor myCursor = getContentResolver()
+                .query(uri,null,null,null,null)
 
-        SimpleCursorAdapter namesAdapter =
-                new SimpleCursorAdapter<Map>(
+        SimpleCursorAdapter cursorAdapter =
+                new SimpleCursorAdapter(
                         this,
                         R.layout.contest_list_item,
-                        cursor,
+                        myCursor,
                         columns,
-                        fields
-                )
+                        fields)
 
-        this.setListAdapter(namesAdapter)
-        namesAdapter.notifyDataSetChanged()
-
+        this.startManagingCursor(myCursor)
+        this.setListAdapter(cursorAdapter)
     }
 
     @Override

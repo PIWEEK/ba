@@ -27,4 +27,3 @@
 }
 -dontwarn org.codehaus.groovy.**
 -dontwarn groovy**
--dontwarn me.champeau.gr8confagenda.app.SessionListFragment

@@ -62,10 +62,9 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="groovy-2.4.0-SNAPSHOT-grooid" level="project" />
     <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
-    <orderEntry type="library" exported="" name="urlimageviewhelper-1.0.4" level="project" />
-    <orderEntry type="library" exported="" name="groovy-json-2.4.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="groovy-json-2.4.0-beta-1" level="project" />
+    <orderEntry type="library" exported="" name="groovy-2.4.0-beta-1-grooid" level="project" />
   </component>
 </module>
 
