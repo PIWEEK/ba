@@ -1,0 +1,76 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.12.+'
+        classpath 'me.champeau.gradle:gradle-groovy-android-plugin:0.2'
+    }
+}
+
+apply plugin: 'android'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.1.0"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 19
+        versionCode 2
+        versionName "1.1"
+    }
+    lintOptions {
+        abortOnError false
+    }
+    signingConfigs {
+        /*
+        release {
+            storeFile file(System.getenv("KEYSTORE")?:debug.storeFile)
+            storePassword System.getenv("KEYSTORE_PASSWORD")?:'foo'
+            keyAlias System.getenv("KEY_ALIAS")?:'foo'
+            keyPassword System.getenv("KEY_PASSWORD")?:'foo'
+        }
+        */
+    }
+
+    buildTypes {
+        debug {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+
+        /*
+        release {
+            runProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
+        }
+        */
+    }
+
+    packagingOptions {
+        // workaround for http://stackoverflow.com/questions/20673625/android-gradle-plugin-0-7-0-duplicate-files-during-packaging-of-apk
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/groovy-release-info.properties'
+    }
+}
+apply plugin: 'groovy-android'
+
+repositories {
+    mavenLocal()
+    maven {
+        url='https://oss.jfrog.org/oss-snapshot-local/'
+    }
+    jcenter()
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:19.1.0'
+    compile 'org.codehaus.groovy:groovy:2.4.0-SNAPSHOT:grooid'
+    compile ('org.codehaus.groovy:groovy-json:2.4.0-SNAPSHOT') {
+        transitive = false
+    }
+    compile 'com.koushikdutta.urlimageviewhelper:urlimageviewhelper:1.0.4'
+}

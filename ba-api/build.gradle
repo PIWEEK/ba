@@ -1,0 +1,30 @@
+
+apply plugin: 'shadow'
+apply plugin: 'groovy'
+
+dependencies {
+    compile 'groovy-wizard:groovy-wizard-core:0.0.1'
+
+    compile 'org.codehaus.groovy:groovy:2.2.2'
+    runtime "org.postgresql:postgresql:9.2-1004-jdbc4"
+    compile 'com.sun.jersey:jersey-client:1.14'
+	compile 'com.codahale.metrics:metrics-core:3.0.1'
+    compile 'io.dropwizard:dropwizard-core:0.7.0'
+    compile 'io.dropwizard:dropwizard-jdbi:0.7.0'
+
+    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+    testCompile 'junit:junit:4.11'
+}
+
+jar {
+    manifest {
+        attributes('Main-Class': 'gw.my.MyApplication')
+    }
+}
+
+task('run-app', type: JavaExec) {
+    main = 'gw.contest.app.ContestApplication'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ['server', 'gw.yml']
+}
+
