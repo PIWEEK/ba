@@ -1,11 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
 
     <TextView
+        android:id="@+id/contestName"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:text="New Text"
-        android:id="@+id/textView" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:maxLines="1"
+        android:text="title"
+        android:textColor="@android:color/black"
+        android:layout_toLeftOf="@+id/contestId"
+        android:textSize="15dip"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/contestDescription"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/contestName"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:text="desc"
+        android:textColor="@android:color/black"
+        android:textSize="13dip" />
+
+    <TextView
+        android:id="@+id/contestId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dip"
+        android:text="date"
+        android:textColor="@android:color/black"
+        android:textSize="12dip" />
+
+</RelativeLayout>
