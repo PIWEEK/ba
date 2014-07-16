@@ -1,4 +1,4 @@
-package gw.contest.android;
+package gw.contest.android.contest;
 
 import android.content.ContentProvider
 import android.content.ContentProviderOperation;
@@ -7,18 +7,21 @@ import android.content.UriMatcher;
 import android.database.Cursor
 import android.database.MatrixCursor;
 import android.net.Uri
+import android.widget.SimpleCursorAdapter
 import groovy.json.JsonSlurper
+import gw.contest.android.R
 
 public class ContestProvider extends ContentProvider {
 
     static final UriMatcher CONTEST_URI_MATCHER
     static final String CONTEST_PROVIDER_NAME = 'gw.contest.android.provider'
 
+    static final Uri CONTEST_CONTENT_URI_LIST = Uri.parse('content://'+ContestProvider.CONTEST_PROVIDER_NAME+'/contests')
+    static final String[] CONTEST_LIST_UI_COLUMNS = ['_id','name', 'description']
+    static final int[] CONTEST_LIST_UI_FIELDS = [R.id.contestId,R.id.contestName, R.id.contestDescription] as int[]
+
     static final int CONTESTS = 1
     static final int CONTESTS_ID = 2
-    static final String[] CONTEST_LIST_COLUMN_NAMES = ['_id', 'name', 'description']
-
-    static final URI_CONTEST_LIST = 'http://10.8.1.134:8080/api/contest'
 
     static {
         CONTEST_URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH)
@@ -28,58 +31,42 @@ public class ContestProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        // Implement this to handle requests to delete one or more rows.
 
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override
     public String getType(Uri uri) {
-        // TODO: Implement this to handle requests for the MIME type of the data
-        // at the given URI.
-        throw new UnsupportedOperationException("Not yet implemented");
+
     }
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        // TODO: Implement this to handle requests to insert a new row.
-        throw new UnsupportedOperationException("Not yet implemented");
+
     }
 
     @Override
     public boolean onCreate() {
-        // TODO: Implement this to initialize your content provider on startup.
-        return false;
+
     }
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
             String[] selectionArgs, String sortOrder) {
 
-        Cursor cursor
-
         switch(CONTEST_URI_MATCHER.match(uri)) {
             case CONTESTS:
-            cursor = new MatrixCursor(CONTEST_LIST_COLUMN_NAMES)
-            def contestList = [
-               [1,"Google IO Watch", "Rifa del Google Watch"],
-               [2,"Google IO Watch", "Rifa del Google Watch"]
-
-            ]
-
-            contestList.each { cursor.addRow(it) }
+                return new ContestRepository().list()
+            break
+            case CONTESTS_ID:
 
             break
         }
 
-
-        cursor
+        return null
     }
 
     @Override
-    public int update(Uri uri, ContentValues values, String selection,
-            String[] selectionArgs) {
-        // TODO: Implement this to handle requests to update one or more rows.
-        throw new UnsupportedOperationException("Not yet implemented");
+    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+
     }
 }

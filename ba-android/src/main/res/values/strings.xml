@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">Contest-A-Matic</string>
+    <string name="back_root_address">http://192.168.1.33:8080/</string>
     <string name="title_session_detail">Session Detail</string>
     <string name="action_favorite">Favorite</string>
     <string name="title_activity_splash_screen">SplashScreenActivity</string>
