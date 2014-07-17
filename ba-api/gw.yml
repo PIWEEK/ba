@@ -60,3 +60,7 @@ logging:
 
   appenders:
     - type: console
+
+
+imageBasePath: s3:/ba/images/
+secondsToExpireURL: 60

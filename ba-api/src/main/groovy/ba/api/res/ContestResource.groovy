@@ -3,23 +3,23 @@ package ba.api.res
 import gw.ast.Inject
 import gw.ast.Resource
 
-import ba.api.rep.ContestRepository
+import ba.api.ser.ContestService
 
 @Resource('/api/contest')
 class ContestResource {
 
-    @Inject ContestRepository contestRepository
+    @Inject ContestService contestService
 
     def 'GET/'() {
-        return contestRepository.list()
+        return contestService.list()
     }
 
     def 'GET/{id}'(Long id) {
-        return contestRepository.get(id)
+        return contestService.get(id)
     }
 
     def 'POST/'(Map contest) {
-        return contestRepository.save(contest)
+        return contestService.save(contest)
     }
 
 }

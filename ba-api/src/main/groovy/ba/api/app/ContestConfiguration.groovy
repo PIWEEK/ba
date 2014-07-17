@@ -14,4 +14,12 @@ class ContestConfiguration {
     @NotNull
     DataSourceFactory database = new DataSourceFactory()
 
+    @Valid
+    @NotNull
+    Integer secondsToExpireURL
+
+    @Valid
+    @NotNull
+    String imageBasePath
+
 }

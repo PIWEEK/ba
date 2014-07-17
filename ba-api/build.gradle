@@ -1,3 +1,4 @@
+
 buildscript {
     repositories {
         jcenter()
@@ -8,12 +9,17 @@ buildscript {
         classpath 'com.github.jengelman.gradle.plugins:shadow:0.8'
     }
 }
+
 repositories {
-        mavenCentral()
-        maven {
-            url 'http://dl.bintray.com/marioggar/maven'
-        }
+    mavenCentral()
+    maven {
+        url 'http://dl.bintray.com/marioggar/maven'
     }
+    maven {
+        url { 'http://dl.bintray.com/content/abashev/vfs-s3' }
+    }
+}
+
 apply plugin: 'shadow'
 apply plugin: 'groovy'
 
@@ -26,6 +32,10 @@ dependencies {
 	compile 'com.codahale.metrics:metrics-core:3.0.1'
     compile 'io.dropwizard:dropwizard-core:0.7.0'
     compile 'io.dropwizard:dropwizard-jdbi:0.7.0'
+
+    compile 'org.apache.commons:commons-vfs2:2.0'
+    compile 'commons-io:commons-io:2.4'
+    compile 'com.intridea.io:vfs-s3:2.1.0'
 
     testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
     testCompile 'junit:junit:4.11'
