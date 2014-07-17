@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">COnTEstaMaTIc</string>
+    <string name="app_name">Ba</string>
 
     <string name="back_root_address">http://192.168.1.33:8080/</string>
 
