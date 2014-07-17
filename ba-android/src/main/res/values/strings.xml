@@ -15,6 +15,7 @@
     <string name="action_confirm_contender_yes">Yes I do!</string>
     <string name="action_confirm_contender_no">No I don\'t!</string>
     <string name="action_confirm_contender_acknowledgement">You\'ve been added to this contest. Good luck!!</string>
+    <string name="action_confirm_contender_error">Upps. Something went wrong. Try again later</string>
 
     <integer name="action_contest_detail_show">0</integer>
     <integer name="action_contest_detail_subscribe">1</integer>

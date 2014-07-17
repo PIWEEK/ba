@@ -1,4 +1,4 @@
-package gw.contest.android.contest
+package gw.contest.android.contender
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -7,10 +7,8 @@ import android.content.DialogInterface
 import android.database.Cursor
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import android.widget.Toast
 import groovy.transform.CompileStatic
 import gw.contest.android.R
-import org.codehaus.groovy.runtime.NullObject
 
 /**
  *

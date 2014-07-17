@@ -7,6 +7,7 @@ import android.database.Cursor
 import android.net.Uri
 import groovy.transform.CompileStatic
 import gw.contest.android.R
+import gw.contest.android.contender.HttpContenderRepository
 
 @CompileStatic
 class ContestProvider extends ContentProvider {
@@ -25,11 +26,13 @@ class ContestProvider extends ContentProvider {
 
     static final int CONTESTS = 1
     static final int CONTESTS_ID = 2
+    static final int CONTENDER_ADD = 3
 
     static {
         CONTEST_URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH)
         CONTEST_URI_MATCHER.addURI(CONTEST_PROVIDER_NAME, 'contests', CONTESTS)
         CONTEST_URI_MATCHER.addURI(CONTEST_PROVIDER_NAME, 'contests/#', CONTESTS_ID)
+        CONTEST_URI_MATCHER.addURI(CONTEST_PROVIDER_NAME, 'contenders/add/', CONTENDER_ADD)
     }
 
     @Override
@@ -57,14 +60,20 @@ class ContestProvider extends ContentProvider {
             String[] selectionArgs, String sortOrder) {
 
         Uri backUri = Uri.parse(context.getString(R.string.back_root_address))
+        Uri contestUri = backUri.buildUpon().appendEncodedPath("api/contest").build()
+        Uri contenderUri = backUri.buildUpon().appendEncodedPath("api/contender").build()
 
         switch(CONTEST_URI_MATCHER.match(uri)) {
             case CONTESTS:
-                return new ContestRepository(backUri).list()
-            break
+                return new HttpContestRepository(contestUri).list()
             case CONTESTS_ID:
-                return new ContestRepository(backUri).get(uri.getLastPathSegment().toLong())
-            break
+                return new HttpContestRepository(contestUri).get(uri.getLastPathSegment().toLong())
+            case CONTENDER_ADD:
+                return new HttpContenderRepository(contenderUri)
+                        .addContender(
+                            uri.getQueryParameter('contenderId'),
+                            uri.getQueryParameter('contestId')
+                        )
         }
 
         return null

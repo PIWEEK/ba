@@ -6,6 +6,7 @@ import android.content.Loader
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.support.v4.app.FragmentActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -13,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import groovy.transform.CompileStatic
 import gw.contest.android.R
+import gw.contest.android.contender.ContenderConfirmationFragment
 
 @CompileStatic
 public class ContestDetailActivity
@@ -59,26 +61,30 @@ public class ContestDetailActivity
     @Override
     Loader<Cursor> onCreateLoader(int id, Bundle args) {
         Long contestId = intent.getLongExtra(getString(R.string.contest_id),0L)
-        String contenderId = "aa${new Date().time}"
+
         switch(id) {
             case resolveInt(R.integer.action_contest_detail_show):
                 return getCursorLoaderFromUri(
-                        Uri.withAppendedPath(
-                                ContestProvider.CONTEST_CONTENT_URI,
-                                contestId.toString()))
+                        ContestProvider.CONTEST_CONTENT_URI
+                            .buildUpon()
+                            .appendPath(contestId.toString())
+                            .build())
             break
             case resolveInt(R.integer.action_contest_detail_subscribe):
-                return getCursorLoaderFromUri(
-                                ContestProvider.CONTEST_CONTENT_URI)
-                break
-                /*
-                return getCursorLoaderFromUri(
-                        Uri.withAppendedPath(
-                                ContestProvider.CONTENDER_CONTENT_URI,
-                                "add?contestId=$contestId&contenderId=$contenderId"))*/
+               return getCursorLoaderFromUri(
+                        ContestProvider.CONTENDER_CONTENT_URI
+                            .buildUpon()
+                            .appendPath("add")
+                            .appendQueryParameter('contenderId',deviceId)
+                            .appendQueryParameter('contestId', contestId.toString())
+                            .build())
             break
         }
 
+    }
+
+    String getDeviceId() {
+        Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID)
     }
 
     CursorLoader getCursorLoaderFromUri(Uri uri) {
@@ -91,7 +97,7 @@ public class ContestDetailActivity
 
         switch(loader.id) {
             case resolveInt(R.integer.action_contest_detail_show):
-                if (data.moveToFirst()) {
+                if (data?.moveToFirst()) {
                     String name = data.getString(ContestProvider.CONTEST_LIST_UI_COLUMNS_ORDER_NAME)
                     String description = data.getString(ContestProvider.CONTEST_LIST_UI_COLUMNS_ORDER_DESCRIPTION)
 
@@ -105,12 +111,11 @@ public class ContestDetailActivity
                 }
             break
             case resolveInt(R.integer.action_contest_detail_subscribe):
-                if (data.moveToFirst()) {
-
-
+                if (data?.moveToFirst()) {
+                    toast(R.string.action_confirm_contender_acknowledgement)
+                } else {
+                    toast(R.string.action_confirm_contender_error)
                 }
-
-                toast(R.string.action_confirm_contender_acknowledgement)
             break
         }
 
