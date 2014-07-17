@@ -5,12 +5,10 @@
     <string name="back_root_address">http://192.168.1.33:8080/</string>
     <string name="title_activity_contest_detail">Details</string>
     <string name="title_activity_contest_list">List</string>
-
     <string name="action_back">Back</string>
     <string name="action_refresh_list">Refresh list</string>
     <string name="action_subscribe">Subscribe</string>
     <string name="action_no_contests">No of contests</string>
-
     <string name="action_confirm_contender">Are you sure you want to participate in this contest ?</string>
     <string name="action_confirm_contender_yes">Yes I do!</string>
     <string name="action_confirm_contender_no">No I don\'t!</string>
@@ -20,8 +18,10 @@
     <integer name="action_contest_detail_show">0</integer>
     <integer name="action_contest_detail_subscribe">1</integer>
 
-
     <string name="contest_id">contestId</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

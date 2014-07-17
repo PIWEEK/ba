@@ -9,26 +9,28 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
         <activity
-            android:name="ba.android.contest.ContestListActivity"
-            android:label="@string/app_name" >
+            android:name=".SplashScreenActivity"
+            android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <provider
-            android:name="ba.android.contest.ContestProvider"
+            android:name=".contest.ContestProvider"
             android:authorities="ba.android.provider"
             android:enabled="true"
             android:exported="true" >
         </provider>
 
         <activity
-            android:name="ba.android.contest.ContestDetailActivity"
+            android:name=".contest.ContestListActivity"
+            android:label="@string/title_activity_contest_list" >
+        </activity>
+        <activity
+            android:name=".contest.ContestDetailActivity"
             android:label="@string/title_activity_contest_detail" >
         </activity>
     </application>
