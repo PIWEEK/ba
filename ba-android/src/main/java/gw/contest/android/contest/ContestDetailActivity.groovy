@@ -1,81 +1,123 @@
 package gw.contest.android.contest
 
-import android.app.Activity
 import android.app.LoaderManager
 import android.content.CursorLoader
 import android.content.Loader
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.FragmentActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toast
 import groovy.transform.CompileStatic
 import gw.contest.android.R
 
 @CompileStatic
 public class ContestDetailActivity
-        extends Activity implements LoaderManager.LoaderCallbacks<Cursor> {
+        extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    int resolveInt(int integerResourceId) {
+        return getResources().getInteger(integerResourceId)
+    }
+
+    void toast(int stringId) {
+        Toast.makeText(this, stringId, 5).show()
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contest_detail)
-
-        loaderManager.initLoader(0, null, this)
+        loaderManager.initLoader(resolveInt(R.integer.action_contest_detail_show), null, this)
     }
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu this adds items to the action bar if it is present.
+    boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.contest_detail, menu)
         return true
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId()
         switch (id) {
             case R.id.action_back:
                 this.finish()
             break
             case R.id.action_subscribe:
-
+                new ContenderConfirmationFragment()
+                    .setCallbacks(this)
+                    .show(getSupportFragmentManager(), 'confirmation')
             break
         }
         return super.onOptionsItemSelected(item)
     }
 
     @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    Loader<Cursor> onCreateLoader(int id, Bundle args) {
         Long contestId = intent.getLongExtra(getString(R.string.contest_id),0L)
+        String contenderId = "aa${new Date().time}"
+        switch(id) {
+            case resolveInt(R.integer.action_contest_detail_show):
+                return getCursorLoaderFromUri(
+                        Uri.withAppendedPath(
+                                ContestProvider.CONTEST_CONTENT_URI,
+                                contestId.toString()))
+            break
+            case resolveInt(R.integer.action_contest_detail_subscribe):
+                return getCursorLoaderFromUri(
+                                ContestProvider.CONTEST_CONTENT_URI)
+                break
+                /*
+                return getCursorLoaderFromUri(
+                        Uri.withAppendedPath(
+                                ContestProvider.CONTENDER_CONTENT_URI,
+                                "add?contestId=$contestId&contenderId=$contenderId"))*/
+            break
+        }
 
-        return new CursorLoader(
-                this,
-                Uri.withAppendedPath(ContestProvider.CONTEST_CONTENT_URI,contestId.toString()), null, null, null, null)
+    }
+
+    CursorLoader getCursorLoaderFromUri(Uri uri) {
+        return new CursorLoader(this, uri, null, null, null, null)
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (!loader) return
 
-        if (data.moveToFirst()) {
-            String name = data.getString(ContestProvider.CONTEST_LIST_UI_COLUMNS_ORDER_NAME)
-            String description = data.getString(ContestProvider.CONTEST_LIST_UI_COLUMNS_ORDER_DESCRIPTION)
+        switch(loader.id) {
+            case resolveInt(R.integer.action_contest_detail_show):
+                if (data.moveToFirst()) {
+                    String name = data.getString(ContestProvider.CONTEST_LIST_UI_COLUMNS_ORDER_NAME)
+                    String description = data.getString(ContestProvider.CONTEST_LIST_UI_COLUMNS_ORDER_DESCRIPTION)
 
-            TextView contestNameView = (TextView) findViewById(R.id.contestName)
-            TextView contestDescriptionView = (TextView) findViewById(R.id.contestDescription)
+                    TextView contestNameView = (TextView) findViewById(R.id.contestName)
+                    TextView contestDescriptionView = (TextView) findViewById(R.id.contestDescription)
 
-            contestNameView.setText(name)
-            contestDescriptionView.setText(description)
+                    contestNameView.setText(name)
+                    contestDescriptionView.setText(description)
 
-            data.close()
+                    data.close()
+                }
+            break
+            case resolveInt(R.integer.action_contest_detail_subscribe):
+                if (data.moveToFirst()) {
+
+
+                }
+
+                toast(R.string.action_confirm_contender_acknowledgement)
+            break
         }
 
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
+    void onLoaderReset(Loader<Cursor> loader) {
 
     }
 }

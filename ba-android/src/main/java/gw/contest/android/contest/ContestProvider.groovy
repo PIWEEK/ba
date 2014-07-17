@@ -15,6 +15,7 @@ class ContestProvider extends ContentProvider {
     static final String CONTEST_PROVIDER_NAME = 'gw.contest.android.provider'
 
     static final Uri CONTEST_CONTENT_URI = Uri.parse('content://'+ContestProvider.CONTEST_PROVIDER_NAME+'/contests')
+    static final Uri CONTENDER_CONTENT_URI = Uri.parse('content://'+ContestProvider.CONTEST_PROVIDER_NAME+'/contenders')
 
     static final String[] CONTEST_LIST_UI_COLUMNS = ['_id','name', 'description']
     static final int[] CONTEST_LIST_UI_FIELDS = [R.id.contestId,R.id.contestName, R.id.contestDescription] as int[]
