@@ -1,5 +1,0 @@
-
-rootProject.name = 'ba'
-
-include 'ba-api'
-include 'ba-android'

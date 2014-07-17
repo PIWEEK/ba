@@ -1,4 +1,19 @@
-
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.11.+'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:0.8'
+    }
+}
+repositories {
+        mavenCentral()
+        maven {
+            url 'http://dl.bintray.com/marioggar/maven'
+        }
+    }
 apply plugin: 'shadow'
 apply plugin: 'groovy'
 
@@ -16,14 +31,24 @@ dependencies {
     testCompile 'junit:junit:4.11'
 }
 
+// http://www.yunspace.com/2014/02/12/dropwizard-gradle-shadowjar/
+import com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer
+
+shadow {
+    transformer(ServiceFileTransformer)
+
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+}
+
 jar {
     manifest {
-        attributes('Main-Class': 'gw.my.MyApplication')
+        attributes('Main-Class': 'ba.api.app.ContestApplication')
     }
 }
 
 task('run-app', type: JavaExec) {
-    main = 'gw.contest.app.ContestApplication'
+    main = 'ba.api.app.ContestApplication'
     classpath = sourceSets.main.runtimeClasspath
     args = ['server', 'gw.yml']
 }
