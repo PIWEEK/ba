@@ -1,4 +1,4 @@
-package gw.contest.android.core
+package ba.android.core
 
 import android.database.Cursor;
 

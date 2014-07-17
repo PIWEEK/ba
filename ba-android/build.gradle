@@ -61,7 +61,10 @@ apply plugin: 'me.champeau.gradle.groovy-android'
 repositories {
     mavenLocal()
     maven {
-        url='https://oss.jfrog.org/oss-snapshot-local/'
+        url = 'https://oss.jfrog.org/oss-snapshot-local/'
+    }
+    maven {
+        url = 'http://repository.codehaus.org'
     }
     jcenter()
 }

@@ -1,19 +1,14 @@
-package gw.contest.android.core
+package ba.android.core
 
 import android.net.Uri
 import android.net.http.AndroidHttpClient
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 import groovy.json.internal.Charsets
-import org.apache.http.NameValuePair
-import org.apache.http.client.entity.UrlEncodedFormEntity
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.client.methods.HttpUriRequest
 import org.apache.http.entity.StringEntity
-import org.apache.http.message.BasicNameValuePair
-
-import java.nio.charset.Charset
 
 /**
  */

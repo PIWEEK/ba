@@ -1,4 +1,4 @@
-package gw.contest.android.contest
+package ba.android.contest
 
 import android.app.LoaderManager
 import android.content.CursorLoader
@@ -13,8 +13,8 @@ import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
 import groovy.transform.CompileStatic
-import gw.contest.android.R
-import gw.contest.android.contender.ContenderConfirmationFragment
+import ba.android.R
+import ba.android.contender.ContenderConfirmationFragment
 
 @CompileStatic
 public class ContestDetailActivity

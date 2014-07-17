@@ -1,7 +1,7 @@
-package gw.contest.android.contender
+package ba.android.contender
 
 import android.database.Cursor
-import gw.contest.android.core.Repository
+import ba.android.core.Repository
 
 interface ContenderRepository extends Repository {
 

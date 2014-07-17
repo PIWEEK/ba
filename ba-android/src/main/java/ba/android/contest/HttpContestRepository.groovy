@@ -1,11 +1,11 @@
-package gw.contest.android.contest
+package ba.android.contest
 
 import android.database.Cursor
 import android.database.MatrixCursor
 import groovy.transform.CompileStatic
 import groovy.transform.InheritConstructors
-import gw.contest.android.core.CrudRepository
-import gw.contest.android.core.HttpClient
+import ba.android.core.CrudRepository
+import ba.android.core.HttpClient
 
 @CompileStatic
 @InheritConstructors

@@ -1,4 +1,4 @@
-package gw.contest.android.contest
+package ba.android.contest
 
 import android.content.ContentProvider
 import android.content.ContentValues
@@ -6,14 +6,14 @@ import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 import groovy.transform.CompileStatic
-import gw.contest.android.R
-import gw.contest.android.contender.HttpContenderRepository
+import ba.android.R
+import ba.android.contender.HttpContenderRepository
 
 @CompileStatic
 class ContestProvider extends ContentProvider {
 
     static final UriMatcher CONTEST_URI_MATCHER
-    static final String CONTEST_PROVIDER_NAME = 'gw.contest.android.provider'
+    static final String CONTEST_PROVIDER_NAME = 'ba.android.provider'
 
     static final Uri CONTEST_CONTENT_URI = Uri.parse('content://'+ContestProvider.CONTEST_PROVIDER_NAME+'/contests')
     static final Uri CONTENDER_CONTENT_URI = Uri.parse('content://'+ContestProvider.CONTEST_PROVIDER_NAME+'/contenders')

@@ -1,4 +1,4 @@
-package gw.contest.android.contender
+package ba.android.contender
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -8,7 +8,7 @@ import android.database.Cursor
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import groovy.transform.CompileStatic
-import gw.contest.android.R
+import ba.android.R
 
 /**
  *

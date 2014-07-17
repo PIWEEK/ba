@@ -1,4 +1,4 @@
-package gw.contest.android.contest
+package ba.android.contest
 
 import android.app.ListActivity
 import android.app.LoaderManager
@@ -14,7 +14,7 @@ import android.widget.AdapterView
 import android.widget.SimpleCursorAdapter
 import android.widget.TextView
 import groovy.transform.CompileStatic
-import gw.contest.android.R
+import ba.android.R
 
 @CompileStatic
 class ContestListActivity extends ListActivity

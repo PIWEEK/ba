@@ -1,10 +1,10 @@
-package gw.contest.android.contender
+package ba.android.contender
 
 import android.database.Cursor
 import android.database.MatrixCursor
 import groovy.transform.CompileStatic
 import groovy.transform.InheritConstructors
-import gw.contest.android.core.HttpClient
+import ba.android.core.HttpClient
 
 
 @CompileStatic
