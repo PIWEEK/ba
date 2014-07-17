@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">C|A|M</string>
+    <string name="app_name">COnTEstaMaTIc</string>
 
     <string name="back_root_address">http://192.168.1.33:8080/</string>
 
@@ -11,6 +11,7 @@
     <string name="action_back">Back</string>
     <string name="action_refresh_list">Refresh list</string>
     <string name="action_subscribe">Subscribe</string>
+    <string name="action_no_contests">No of contests</string>
 
 
     <string name="contest_id">contestId</string>

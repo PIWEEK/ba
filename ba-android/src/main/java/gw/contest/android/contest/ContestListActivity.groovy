@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.SimpleCursorAdapter
+import android.widget.TextView
 import groovy.transform.CompileStatic
 import gw.contest.android.R
 
@@ -60,6 +61,10 @@ class ContestListActivity extends ListActivity
                 data,
                 ContestProvider.CONTEST_LIST_UI_COLUMNS,
                 ContestProvider.CONTEST_LIST_UI_FIELDS))
+
+        TextView noOfContests = (TextView) findViewById(R.id.actionbar_notifcation_textview)
+        noOfContests.setText(data.count.toString())
+
     }
 
     @Override

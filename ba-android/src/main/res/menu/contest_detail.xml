@@ -10,4 +10,5 @@
         android:showAsAction="always"
 
         android:title="@string/action_subscribe"/>
+
 </menu>

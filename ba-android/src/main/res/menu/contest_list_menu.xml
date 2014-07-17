@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/badge"
+        android:actionLayout="@layout/actionbar_badge_layout"
+        android:title="@string/action_no_contests"
+        android:icon="@drawable/ic_action_event"
+        android:showAsAction="always">
+    </item>
     <item android:id="@+id/action_refresh_agenda"
         android:title="@string/action_refresh_list"
         android:showAsAction="always"
