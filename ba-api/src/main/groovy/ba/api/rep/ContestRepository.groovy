@@ -1,3 +1,3 @@
-package gw.contest.rep
+package ba.api.rep
 
 interface ContestRepository extends CrudRepository {}

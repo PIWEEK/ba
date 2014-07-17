@@ -1,4 +1,4 @@
-package gw.contest.rep
+package ba.api.rep
 
 import com.google.inject.Inject
 import org.skife.jdbi.v2.DBI

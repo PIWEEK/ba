@@ -1,7 +1,7 @@
-package gw.contest.app
+package ba.api.app
 
 import gw.ast.ApplicationModule
-import gw.contest.res.ResourcesModule
+import ba.api.res.ResourcesModule
 
 @ApplicationModule
 class ContestApplicationModule {

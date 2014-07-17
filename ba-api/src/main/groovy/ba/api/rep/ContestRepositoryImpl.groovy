@@ -1,4 +1,4 @@
-package gw.contest.rep
+package ba.api.rep
 
 class ContestRepositoryImpl extends JdbiRepository implements ContestRepository {
 

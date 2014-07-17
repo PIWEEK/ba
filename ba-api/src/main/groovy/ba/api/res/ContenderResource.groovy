@@ -1,9 +1,9 @@
-package gw.contest.res
+package ba.api.res
 
 import gw.ast.Inject
 import gw.ast.Resource
 
-import gw.contest.rep.ContenderRepository
+import ba.api.rep.ContenderRepository
 
 @Resource('/api/contender')
 class ContenderResource {

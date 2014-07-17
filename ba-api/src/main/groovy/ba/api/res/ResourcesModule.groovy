@@ -1,11 +1,11 @@
-package gw.contest.res
+package ba.api.res
 
 import gw.app.Module
 
-import gw.contest.rep.ContestRepository
-import gw.contest.rep.ContenderRepository
-import gw.contest.rep.ContestRepositoryImpl
-import gw.contest.rep.ContenderRepositoryInMemory
+import ba.api.rep.ContestRepository
+import ba.api.rep.ContenderRepository
+import ba.api.rep.ContestRepositoryImpl
+import ba.api.rep.ContenderRepositoryInMemory
 
 class ResourcesModule extends Module {
 
