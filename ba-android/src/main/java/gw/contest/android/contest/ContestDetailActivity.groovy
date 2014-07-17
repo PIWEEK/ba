@@ -22,7 +22,7 @@ public class ContestDetailActivity
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contest_detail)
 
-        loaderManager.initLoader(0, null, this);
+        loaderManager.initLoader(0, null, this)
     }
 
 

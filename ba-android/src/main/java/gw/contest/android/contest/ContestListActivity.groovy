@@ -8,6 +8,7 @@ import android.content.Loader
 import android.database.Cursor
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.SimpleCursorAdapter
@@ -64,5 +65,12 @@ class ContestListActivity extends ListActivity
     @Override
     void onLoaderReset(Loader<Cursor> loader) {
 
+    }
+
+    @Override
+    boolean onOptionsItemSelected(MenuItem item) {
+        loaderManager.restartLoader(0, null, this)
+
+        return super.onOptionsItemSelected(item)
     }
 }
