@@ -2,6 +2,15 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:background="#444"
+        android:padding="3dp" />
+
     <TextView
         android:id="@+id/contestName"
         android:layout_width="fill_parent"
@@ -10,6 +19,7 @@
         android:maxLines="1"
         android:text="title"
         android:textColor="@android:color/black"
+        android:layout_toRightOf="@id/image"
         android:layout_toLeftOf="@+id/contestId"
         android:textSize="15dip"
         android:textStyle="bold" />
@@ -23,6 +33,7 @@
         android:maxLines="3"
         android:text="desc"
         android:textColor="@android:color/black"
+        android:layout_toRightOf="@id/image"
         android:textSize="13dip" />
 
     <TextView

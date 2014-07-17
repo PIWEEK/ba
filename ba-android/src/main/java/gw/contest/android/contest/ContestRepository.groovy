@@ -34,7 +34,10 @@ class ContestRepository implements Repository {
     Cursor get(Long id) {
         Cursor cursor = new MatrixCursor(CONTEST_LIST_COLUMN_NAMES)
         URL address = Uri.withAppendedPath(URI_CONTEST_ROOT, "$id").toString().toURL()
+        Map result = (Map) new JsonSlurper().parse(address)
 
-        cursor
+        cursor.addRow([result.id, result.name, result.description])
+
+        return cursor
     }
 }

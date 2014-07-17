@@ -2,25 +2,32 @@ package gw.contest.android.contest
 
 import android.app.ListActivity
 import android.app.LoaderManager
-import android.content.ContentProviderOperation
 import android.content.CursorLoader
+import android.content.Intent
 import android.content.Loader
 import android.database.Cursor
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
+import android.widget.AdapterView
 import android.widget.SimpleCursorAdapter
 import groovy.transform.CompileStatic
 import gw.contest.android.R
-import gw.contest.android.contest.ContestProvider
 
 @CompileStatic
-class ContestsListActivity extends ListActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+class ContestListActivity extends ListActivity
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.contest_list)
+        setContentView(R.layout.activity_contest_list)
+
+        listView.setOnItemClickListener { AdapterView<?> parent, View v, int position, long id ->
+            Intent newIntent = new Intent(this, ContestDetailActivity)
+            newIntent.putExtra(getString(R.string.contest_id), id)
+            startActivity(newIntent)
+        }
 
         loaderManager.initLoader(0, null, this);
     }
@@ -40,7 +47,7 @@ class ContestsListActivity extends ListActivity implements LoaderManager.LoaderC
     @Override
     Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
-                this, ContestProvider.CONTEST_CONTENT_URI_LIST, null, null, null, null)
+                this, ContestProvider.CONTEST_CONTENT_URI, null, null, null, null)
     }
 
     @Override

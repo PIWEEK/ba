@@ -1,14 +1,10 @@
 package gw.contest.android.contest
 
 import android.content.ContentProvider
-import android.content.ContentProviderOperation
 import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
-import android.database.MatrixCursor
 import android.net.Uri
-import android.widget.SimpleCursorAdapter
-import groovy.json.JsonSlurper
 import groovy.transform.CompileStatic
 import gw.contest.android.R
 
@@ -18,9 +14,13 @@ class ContestProvider extends ContentProvider {
     static final UriMatcher CONTEST_URI_MATCHER
     static final String CONTEST_PROVIDER_NAME = 'gw.contest.android.provider'
 
-    static final Uri CONTEST_CONTENT_URI_LIST = Uri.parse('content://'+ContestProvider.CONTEST_PROVIDER_NAME+'/contests')
+    static final Uri CONTEST_CONTENT_URI = Uri.parse('content://'+ContestProvider.CONTEST_PROVIDER_NAME+'/contests')
+
     static final String[] CONTEST_LIST_UI_COLUMNS = ['_id','name', 'description']
     static final int[] CONTEST_LIST_UI_FIELDS = [R.id.contestId,R.id.contestName, R.id.contestDescription] as int[]
+    static final int CONTEST_LIST_UI_COLUMNS_ORDER_ID = 0
+    static final int CONTEST_LIST_UI_COLUMNS_ORDER_NAME = 1
+    static final int CONTEST_LIST_UI_COLUMNS_ORDER_DESCRIPTION = 2
 
     static final int CONTESTS = 1
     static final int CONTESTS_ID = 2
@@ -60,7 +60,7 @@ class ContestProvider extends ContentProvider {
                 return new ContestRepository().list()
             break
             case CONTESTS_ID:
-
+                return new ContestRepository().get(uri.getLastPathSegment().toLong())
             break
         }
 
