@@ -10,9 +10,12 @@ import gw.contest.android.core.Repository
 @CompileStatic
 class ContestRepository implements Repository {
 
-    static final String[] CONTEST_LIST_COLUMN_NAMES = ['_id', 'name', 'description']
-    static final Uri BACK_ADDRESS = Uri.parse('http://192.168.1.33:8080/')
-    static final Uri URI_CONTEST_ROOT = Uri.withAppendedPath(BACK_ADDRESS, "api/contest")
+    final String[] CONTEST_LIST_COLUMN_NAMES = ['_id', 'name', 'description']
+    final Uri URI_CONTEST_ROOT
+
+    ContestRepository(Uri root) {
+        URI_CONTEST_ROOT = Uri.withAppendedPath(root, "api/contest")
+    }
 
     @Override
     Cursor list() {

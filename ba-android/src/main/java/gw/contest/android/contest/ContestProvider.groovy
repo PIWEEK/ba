@@ -55,12 +55,14 @@ class ContestProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection,
             String[] selectionArgs, String sortOrder) {
 
+        Uri backUri = Uri.parse(context.getString(R.string.back_root_address))
+
         switch(CONTEST_URI_MATCHER.match(uri)) {
             case CONTESTS:
-                return new ContestRepository().list()
+                return new ContestRepository(backUri).list()
             break
             case CONTESTS_ID:
-                return new ContestRepository().get(uri.getLastPathSegment().toLong())
+                return new ContestRepository(backUri).get(uri.getLastPathSegment().toLong())
             break
         }
 
