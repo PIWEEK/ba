@@ -1,19 +1,19 @@
 package ba.api.ser
 
 import gw.ast.Inject
-import ba.api.app.ContestConfiguration
+import io.dropwizard.Configuration
 import org.apache.commons.vfs2.VFS
 
 class ImageService {
 
-    @Inject ContestConfiguration configuration
+    @Inject Configuration configuration
 
-    String getImageURI(String imageId) {
+    String getImageURI(Long imageId) {
         return VFS
             .manager
             .resolveFile(
                 URI.create(configuration.imageBasePath)
-                   .resolve(imageId)
+                   .resolve("${imageId}.png")
                    .toString())
             .getSignedUrl(configuration.secondsToExpireURL)
     }

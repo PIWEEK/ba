@@ -62,5 +62,5 @@ logging:
     - type: console
 
 
-imageBasePath: s3:/ba/images/
-secondsToExpireURL: 60
+imageBasePath: s3:/m-storage-test/images/
+secondsToExpireURL: 60000

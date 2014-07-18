@@ -5,9 +5,9 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
-import groovy.transform.CompileStatic
 import ba.android.R
 import ba.android.contender.HttpContenderRepository
+import groovy.transform.CompileStatic
 
 @CompileStatic
 class ContestProvider extends ContentProvider {
@@ -18,11 +18,12 @@ class ContestProvider extends ContentProvider {
     static final Uri CONTEST_CONTENT_URI = Uri.parse('content://'+ContestProvider.CONTEST_PROVIDER_NAME+'/contests')
     static final Uri CONTENDER_CONTENT_URI = Uri.parse('content://'+ContestProvider.CONTEST_PROVIDER_NAME+'/contenders')
 
-    static final String[] CONTEST_LIST_UI_COLUMNS = ['_id','name', 'description']
-    static final int[] CONTEST_LIST_UI_FIELDS = [R.id.contestId,R.id.contestName, R.id.contestDescription] as int[]
+    static final String[] CONTEST_LIST_UI_COLUMNS = ['_id','name', 'description', 'image']
+    static final int[] CONTEST_LIST_UI_FIELDS = [R.id.contestId,R.id.contestName, R.id.contestDescription, R.id.contestImage] as int[]
     static final int CONTEST_LIST_UI_COLUMNS_ORDER_ID = 0
     static final int CONTEST_LIST_UI_COLUMNS_ORDER_NAME = 1
     static final int CONTEST_LIST_UI_COLUMNS_ORDER_DESCRIPTION = 2
+    static final int CONTEST_LIST_UI_COLUMNS_ORDER_IMAGE = 3
 
     static final int CONTESTS = 1
     static final int CONTESTS_ID = 2

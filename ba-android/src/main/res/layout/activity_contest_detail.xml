@@ -15,7 +15,7 @@
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/contestImage"
         android:layout_width="fill_parent"
         android:layout_height="150dp"
         android:layout_below="@id/contestName"
@@ -28,7 +28,7 @@
         android:id="@+id/contestDescription"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/image"
+        android:layout_below="@id/contestImage"
         android:layout_marginTop="5dip"
         android:maxLines="10"
         android:text="title"

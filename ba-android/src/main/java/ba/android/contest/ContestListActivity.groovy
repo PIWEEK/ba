@@ -11,10 +11,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ImageView
 import android.widget.SimpleCursorAdapter
 import android.widget.TextView
-import groovy.transform.CompileStatic
 import ba.android.R
+import com.squareup.picasso.Picasso
+import groovy.transform.CompileStatic
 
 @CompileStatic
 class ContestListActivity extends ListActivity
@@ -54,14 +56,31 @@ class ContestListActivity extends ListActivity
 
     @Override
     void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        this.setListAdapter(
-            new SimpleCursorAdapter(
-                this,
-                R.layout.contest_list_item,
-                data,
-                ContestProvider.CONTEST_LIST_UI_COLUMNS,
-                ContestProvider.CONTEST_LIST_UI_FIELDS))
+        SimpleCursorAdapter adapter =
+                new SimpleCursorAdapter(
+                    this,
+                    R.layout.contest_list_item,
+                    data,
+                    ContestProvider.CONTEST_LIST_UI_COLUMNS,
+                    ContestProvider.CONTEST_LIST_UI_FIELDS)
 
+        SimpleCursorAdapter.ViewBinder viewBinder = new SimpleCursorAdapter.ViewBinder() {
+            public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+                if (view.id == R.id.contestImage) {
+                    ImageView imageView = (ImageView) view
+                    Picasso
+                        .with(ContestListActivity.this)
+                        .load(cursor.getString(columnIndex))
+                        .into(imageView)
+                    return true
+                }
+               return false
+            }
+        };
+        adapter.setViewBinder(viewBinder);
+
+
+        this.setListAdapter(adapter)
         TextView noOfContests = (TextView) findViewById(R.id.actionbar_notifcation_textview)
         noOfContests.setText(data.count.toString())
 

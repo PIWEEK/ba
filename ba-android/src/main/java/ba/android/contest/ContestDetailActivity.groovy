@@ -10,11 +10,13 @@ import android.provider.Settings
 import android.support.v4.app.FragmentActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import groovy.transform.CompileStatic
 import ba.android.R
 import ba.android.contender.ContenderConfirmationFragment
+import com.squareup.picasso.Picasso
+import groovy.transform.CompileStatic
 
 @CompileStatic
 public class ContestDetailActivity
@@ -100,12 +102,16 @@ public class ContestDetailActivity
                 if (data?.moveToFirst()) {
                     String name = data.getString(ContestProvider.CONTEST_LIST_UI_COLUMNS_ORDER_NAME)
                     String description = data.getString(ContestProvider.CONTEST_LIST_UI_COLUMNS_ORDER_DESCRIPTION)
+                    String image = data.getString(ContestProvider.CONTEST_LIST_UI_COLUMNS_ORDER_IMAGE)
 
                     TextView contestNameView = (TextView) findViewById(R.id.contestName)
                     TextView contestDescriptionView = (TextView) findViewById(R.id.contestDescription)
+                    ImageView imageView = (ImageView) findViewById(R.id.contestImage)
 
                     contestNameView.setText(name)
                     contestDescriptionView.setText(description)
+
+                    Picasso.with(this).load(image).into(imageView)
 
                     data.close()
                 }
